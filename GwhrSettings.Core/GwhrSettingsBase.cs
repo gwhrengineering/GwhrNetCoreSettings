@@ -8,7 +8,7 @@ namespace GwhrSettings.Core
     public abstract class GwhrSettingsBase
     {
         //Internal fields
-        protected string _strBasePath = string.Empty;
+        private string _strBasePath = string.Empty;
         protected bool _blnUseLazyLoading = false;
         protected string _strFileName = string.Empty;
         protected bool _blnHasBeenBuilt = false;

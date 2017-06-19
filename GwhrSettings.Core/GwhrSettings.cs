@@ -70,10 +70,26 @@ namespace GwhrSettings.Core
         //Ensure the supplied base path and filename point to a valid file
         private void EnsureFileExists()
         {
-            if (!File.Exists(FilePath))
+            if (File.Exists(FilePath))
             {
-                throw new Exception($"Invalid file path: {FilePath}");
+                return;//throw new Exception($"Invalid file path: {FilePath}");
             }
+			//Assumes file does not exist
+			try
+			{
+				_objFileLock.EnterWriteLock();
+
+				//Clear existing file text
+                File.WriteAllText(FilePath, "{}");
+
+				//Write the dictionary to the file
+				File.WriteAllText(FilePath, JsonConvert.SerializeObject(_dicSettings));
+			}
+			finally
+			{
+				_objFileLock.ExitWriteLock();
+			}
+
         }
 
         //Parses the settings json file to memory
@@ -100,10 +116,10 @@ namespace GwhrSettings.Core
                 _objFileLock.EnterWriteLock();
 
                 //Clear existing file text
-                File.WriteAllText(_strFileName, "");
+                File.WriteAllText(FilePath, "");
 
                 //Write the dictionary to the file
-                File.WriteAllText(_strFileName, JsonConvert.SerializeObject(_dicSettings));
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(_dicSettings));
             }
             finally
             {
