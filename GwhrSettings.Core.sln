@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GwhrSettings.Core", "GwhrSettings.Core\GwhrSettings.Core.csproj", "{35B6AF20-714E-4136-A24D-92CDBB3EB434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GwhrSettings.ConsoleClient", "GwhrSettings.Client.Console\GwhrSettings.ConsoleClient.csproj", "{782D0725-D30A-4C66-B9EF-5AA01FF2C382}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35B6AF20-714E-4136-A24D-92CDBB3EB434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B6AF20-714E-4136-A24D-92CDBB3EB434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B6AF20-714E-4136-A24D-92CDBB3EB434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B6AF20-714E-4136-A24D-92CDBB3EB434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782D0725-D30A-4C66-B9EF-5AA01FF2C382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782D0725-D30A-4C66-B9EF-5AA01FF2C382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782D0725-D30A-4C66-B9EF-5AA01FF2C382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782D0725-D30A-4C66-B9EF-5AA01FF2C382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
