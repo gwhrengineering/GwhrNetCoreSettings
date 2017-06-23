@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{782D0725-D30A-4C66-B9EF-5AA01FF2C382}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GwhrSettings.Core/GwhrSettings.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GwhrSettings.Core/GwhrSettingsBase.cs">
     <Files>
-      <File FileName="GwhrSettings.Core/GwhrSettings.cs" Line="83" Column="48" />
-      <File FileName="GwhrSettings.Core/GwhrSettingsBase.cs" Line="13" Column="18" />
-      <File FileName="GwhrSettings.Core/GwhrSettingsExtensions.cs" Line="4" Column="29" />
-      <File FileName="GwhrSettings.Client.Console/Program.cs" Line="82" Column="201" />
+      <File FileName="GwhrSettings.Core/GwhrSettings.cs" Line="11" Column="1" />
+      <File FileName="GwhrSettings.Client.Console/Program.cs" Line="23" Column="30" />
+      <File FileName="GwhrSettings.Core/IGwhrSettings.cs" Line="22" Column="3" />
+      <File FileName="GwhrSettings.Core/GwhrJsonSettingsProvider.cs" Line="32" Column="5" NotebookId="1" />
+      <File FileName="GwhrSettings.Core/GwhrSettingsBase.cs" Line="16" Column="9" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 
 namespace GwhrSettings.Core
 {
-    public abstract class GwhrSettingsBase
+    public abstract class GwhrSettingsBase//<T>
     {
         //Internal fields
-        private string _strBasePath = string.Empty;
+        protected string _strBasePath = string.Empty;
         protected bool _blnUseLazyLoading = false;
         protected string _strFileName = string.Empty;
         protected bool _blnHasBeenBuilt = false;
@@ -33,10 +33,11 @@ namespace GwhrSettings.Core
         /// Sets the settings file base path excluding the file name
         /// </summary>
         /// <param name="strBasePath">String base path.</param>
-        public virtual void SetBasePath(string strBasePath)
-        {
-            _strBasePath = strBasePath;
-        }
+        //public virtual T SetBasePath(string strBasePath)
+        //{
+        //    _strBasePath = strBasePath;
+        //    return (T)this;
+        //}
 
         //Loads all the settings into memory
         /// <summary>
@@ -44,14 +45,9 @@ namespace GwhrSettings.Core
         /// </summary>
         /// <returns>The build.</returns>
         /// <param name="strFileName">String file name.</param>
-        public abstract void Build(string strFileName);
+        //public abstract T Build(string strFileName);
 
-        /// <summary>
-        /// Lazily loads the settings from the specified file path.  
-        /// Only chaches the settings once they have been requested.
-        /// </summary>
-        /// <param name="strFileName">The name of the file to load the settings from</param>
-        public abstract void Load(string strFileName);
+
 
         /// <summary>
         /// Writes the current in-memory settings to the setttings file.
@@ -63,13 +59,13 @@ namespace GwhrSettings.Core
         #region Getter and setter methods
 
         //Gets the settings from the internal dictionary
-        protected T GetValue<T>(T objDefaultValue, [CallerMemberName] string strKey = "")
+        protected TSetting GetValue<TSetting>(TSetting objDefaultValue, [CallerMemberName] string strKey = "")
         {
             
-            return (T)this._dicSettings.GetOrAdd(strKey, objDefaultValue);
+            return (TSetting)this._dicSettings.GetOrAdd(strKey, objDefaultValue);
         }
 
-        protected void SetValue<T>(T objValue, [CallerMemberName] string strKey = "")
+        protected void SetValue<TSetting>(TSetting objValue, [CallerMemberName] string strKey = "")
         {
             this._dicSettings.AddOrUpdate(strKey, objValue, (key,oldValue)=> { 
                 return objValue; });

@@ -12,9 +12,9 @@ namespace GwhrSettings.ConsoleClient
         {
 
             //Load the settings
-            Settings = new Core.GwhrSettings();//.SetBasePath("").Build("AppConfig.json");
-            Settings.SetBasePath(AppContext.BaseDirectory);
-            Settings.Build("AppConfig.json");
+            Settings = new Core.GwhrSettings()
+                               .SetBasePath(AppContext.BaseDirectory)
+                               .Build("AppConfig.json");
 
             Console.WriteLine("Settings initialized");
 
