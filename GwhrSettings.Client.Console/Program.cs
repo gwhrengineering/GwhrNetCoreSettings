@@ -1,18 +1,16 @@
 ﻿using System;
 using GwhrSettings.Core;
-using System.Collections.Concurrent;
-using Newtonsoft.Json;
 
 namespace GwhrSettings.ConsoleClient
 {
     class Program
     {
-        private static Core.GwhrSettings Settings;
+        private static ApplicationSettings Settings;
         static void Main(string[] args)
         {
 
             //Load the settings
-            Settings = new Core.GwhrSettings()
+            Settings = new ApplicationSettings()
                                .SetBasePath(AppContext.BaseDirectory)
                                .Build("AppConfig.json");
 

@@ -5,47 +5,28 @@ using System.Runtime.CompilerServices;
 
 namespace GwhrSettings.Core
 {
-    public abstract class GwhrSettingsBase//<T>
+    public abstract class GwhrSettingsBase<T> where T : GwhrSettingsBase<T>
     {
         //Internal fields
-        protected string _strBasePath = string.Empty;
         protected bool _blnUseLazyLoading = false;
         protected string _strFileName = string.Empty;
         protected bool _blnHasBeenBuilt = false;
         protected ConcurrentDictionary<string, object> _dicSettings = new ConcurrentDictionary<string, object>();//Thread safe dictionary
 
-		#region Public properties
+        #region Public properties
 
-		//Get the complete file path
-		protected string FilePath
-		{
-			get
-			{
-				return Path.Combine(_strBasePath, _strFileName);
-			}
-		}
+
 
         #endregion
 
         #region Public methods
 
         /// <summary>
-        /// Sets the settings file base path excluding the file name
-        /// </summary>
-        /// <param name="strBasePath">String base path.</param>
-        //public virtual T SetBasePath(string strBasePath)
-        //{
-        //    _strBasePath = strBasePath;
-        //    return (T)this;
-        //}
-
-        //Loads all the settings into memory
-        /// <summary>
         /// Loads the entire settings file into memory
         /// </summary>
         /// <returns>The build.</returns>
         /// <param name="strFileName">String file name.</param>
-        //public abstract T Build(string strFileName);
+        public abstract T Build(string strFileName);
 
 
 
@@ -61,14 +42,15 @@ namespace GwhrSettings.Core
         //Gets the settings from the internal dictionary
         protected TSetting GetValue<TSetting>(TSetting objDefaultValue, [CallerMemberName] string strKey = "")
         {
-            
             return (TSetting)this._dicSettings.GetOrAdd(strKey, objDefaultValue);
         }
 
         protected void SetValue<TSetting>(TSetting objValue, [CallerMemberName] string strKey = "")
         {
-            this._dicSettings.AddOrUpdate(strKey, objValue, (key,oldValue)=> { 
-                return objValue; });
+            this._dicSettings.AddOrUpdate(strKey, objValue, (key, oldValue) =>
+            {
+                return objValue;
+            });
             OnPropertyChanged(strKey);
         }
 

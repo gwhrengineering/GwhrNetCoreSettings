@@ -5,14 +5,22 @@ using Newtonsoft.Json;
 
 namespace GwhrSettings.Core
 {
-    public class GwhrJsonSettingsProvider<T> : GwhrSettingsBase, IGwhrSettings<T> where T : GwhrJsonSettingsProvider<T>
+    public class GwhrJsonSettingsProvider<T> : GwhrSettingsBase<T> where T : GwhrJsonSettingsProvider<T>
     {
         //Internal fields
         private ReaderWriterLockSlim _objFileLock = new ReaderWriterLockSlim();
+        private string _strBasePath = string.Empty;
 
-        #region Public methods
+        #region Properties
 
-        public T Build(string strFileName)
+        //Get the complete file path
+        protected string FilePath => Path.Combine(_strBasePath, _strFileName);
+
+        #endregion
+
+        #region Overridden methods
+
+        public override T Build(string strFileName)
         {
             _strFileName = strFileName;
 
@@ -27,22 +35,21 @@ namespace GwhrSettings.Core
 
         public override void Save()
         {
-			EnsureFileExists();
-			try
-			{
-				_objFileLock.EnterWriteLock();
+            EnsureFileExists();
+            try
+            {
+                _objFileLock.EnterWriteLock();
 
-				//Clear existing file text
-				File.WriteAllText(FilePath, "");
+                //Clear existing file text
+                File.WriteAllText(FilePath, "");
 
-				//Write the dictionary to the file
-				File.WriteAllText(FilePath, JsonConvert.SerializeObject(_dicSettings));
-			}
-			finally
-			{
-				_objFileLock.ExitWriteLock();
-			}
-            //WriteToFile();
+                //Write the dictionary to the file
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(_dicSettings));
+            }
+            finally
+            {
+                _objFileLock.ExitWriteLock();
+            }
         }
 
         #endregion
