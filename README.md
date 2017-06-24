@@ -23,7 +23,6 @@ public class ApplicationSettings : GwhrJsonSettingsProvider<ApplicationSettings>
             set{SetValue(value);}
         }
 
-
         public int Timeout
         {
             get{ return GetValue(5); }
@@ -43,7 +42,7 @@ To save the settings, simply call the save method on your settings class.
 
 //Creates a new instance of the settings.  This should be done at application startup.
 
-ApplicationSettings objSettings = new ApplicationSettings().SetBasePath(AppContext.BaseDirectory).Build("AppConfig.json";
+ApplicationSettings objSettings = new ApplicationSettings().SetBasePath(AppContext.BaseDirectory).Build("AppConfig.json");
 
 //Read a setting value
 Debug.WriteLine(objSettings.EndPoint);//Returns "https://localhost:1234";
