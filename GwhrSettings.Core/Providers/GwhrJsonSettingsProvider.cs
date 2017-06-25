@@ -35,6 +35,8 @@ namespace GwhrSettings.Core
 
         public override void Save()
         {
+            base.Save();//Resets all settings state to unchanged
+
             EnsureFileExists();
             try
             {
@@ -88,7 +90,7 @@ namespace GwhrSettings.Core
             try
             {
                 _objFileLock.EnterReadLock();
-                _dicSettings = JsonConvert.DeserializeObject<ConcurrentDictionary<string, object>>(File.ReadAllText(FilePath));
+                _dicSettings = JsonConvert.DeserializeObject<ConcurrentDictionary<string, GwhrSetting>>(File.ReadAllText(FilePath));
             }
             finally
             {

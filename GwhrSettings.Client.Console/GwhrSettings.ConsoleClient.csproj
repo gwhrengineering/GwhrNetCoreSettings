@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,12 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GwhrSettings.Core\GwhrSettings.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="AppConfig.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AppConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
