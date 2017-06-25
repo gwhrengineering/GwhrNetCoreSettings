@@ -33,7 +33,8 @@ namespace GwhrSettings.Core
         /// Resets the state of the settings to State.Unchanged.  
         /// Override to write the current in-memory settings to the permanent settings location.
         /// </summary>
-        public virtual void Save() {
+        public virtual void Save()
+        {
             foreach (GwhrSetting objSetting in this._dicSettings.Values)
             {
                 objSetting.State = State.Unchanged;
@@ -57,33 +58,37 @@ namespace GwhrSettings.Core
                  };
              });
             return (TSetting)objSetting.Value;
-            //return (TSetting)this._dicSettings.GetOrAdd(strKey, objDefaultValue);
         }
 
-        protected void SetValue<TSetting>(TSetting objValue, [CallerMemberName] string strKey = "")
+        protected void SetValue<TSetting>(TSetting objNewValue, [CallerMemberName] string strKey = "")
         {
-            this._dicSettings.AddOrUpdate(strKey, (key) =>
+            GwhrSetting objSetting = this._dicSettings.AddOrUpdate(strKey, (key) =>
             {
-                //This is the addValueFactory
+                //This is the add value Factory
                 return new GwhrSetting()
                 {
                     Key = strKey,
-                    Value = objValue,
+                    Value = objNewValue,
                     State = State.Added
                 };
-            }, (key, oldValue) =>
+            }, (key, objCurrentSetting) =>
             {
                 //This is the update value factory
-                oldValue.State = State.Modified;
-                oldValue.Value = objValue;
-                return oldValue;
+                if (objNewValue.Equals(objCurrentSetting.Value))
+                {
+                    //The value has not changed.  Return the current setting
+                    return objCurrentSetting;
+                }
+                //The value has changed.  Mark the setting as modified and assign the new value to it.
+                objCurrentSetting.State = State.Modified;
+                objCurrentSetting.Value = objNewValue;
+                return objCurrentSetting;
             });
 
-            //this._dicSettings.AddOrUpdate(strKey, objValue, (key, oldValue) =>
-            //{
-            //    return objValue;
-            //});
-            OnPropertyChanged(strKey);
+            if (objSetting.State == State.Added || objSetting.State == State.Modified)
+            {
+                OnPropertyChanged(strKey);
+            }
         }
 
         #endregion

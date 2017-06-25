@@ -1,5 +1,6 @@
 ﻿using System;
 using GwhrSettings.Core;
+using GwhrSettings.Providers;
 
 namespace GwhrSettings.ConsoleClient
 {

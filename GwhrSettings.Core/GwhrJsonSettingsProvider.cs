@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
+using GwhrSettings.Core;
 
 namespace GwhrSettings.Core
 {

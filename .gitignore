@@ -3,3 +3,5 @@ GwhrSettings.Client.Console/obj/
 GwhrSettings.Core/bin/
 GwhrSettings.Core/obj/
 .vs/
+GwhrSettings.RelationalDatabaseProvider/bin/
+GwhrSettings.RelationalDatabaseProvider/obj/

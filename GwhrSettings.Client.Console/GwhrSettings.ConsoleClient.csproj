@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GwhrSettings.Core\GwhrSettings.Core.csproj" />
+    <ProjectReference Include="..\GwhrSettings.RelationalDatabaseProvider\GwhrSettings.RelationalDatabaseProvider.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
