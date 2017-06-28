@@ -4,10 +4,10 @@ using System.Text;
 
 namespace GwhrSettings.Providers
 {
-    enum DatabaseProvider
+    public enum DatabaseProvider
     {
         MySql,
         SQLite,
-        SqlServer
+        MicrosoftSqlServer
     }
 }

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="SqlScripts\" />
+    <Folder Include="DbContext\" />
   </ItemGroup>
 
 </Project>
