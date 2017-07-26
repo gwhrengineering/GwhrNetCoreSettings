@@ -27,7 +27,7 @@ namespace GwhrSettings.Core
         /// </summary>
         /// <returns>The build.</returns>
         /// <param name="strFileName">String file name.</param>
-        public abstract T Build(string strFileName);
+        public abstract T Load(string strFileName);
 
         /// <summary>
         /// Resets the state of the settings to State.Unchanged.  

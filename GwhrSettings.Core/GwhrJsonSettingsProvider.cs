@@ -21,7 +21,7 @@ namespace GwhrSettings.Core
 
         #region Overridden methods
 
-        public override T Build(string strFileName)
+        public override T Load(string strFileName)
         {
             _strFileName = strFileName;
 
