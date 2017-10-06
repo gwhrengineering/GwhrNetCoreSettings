@@ -10,6 +10,7 @@ namespace GwhrSettings.Core
 
         public string Key { get; set; }
         public object Value { get; set; }
+        public string Comment { get; set; }
         public State State { get; set; }
 
         #endregion
