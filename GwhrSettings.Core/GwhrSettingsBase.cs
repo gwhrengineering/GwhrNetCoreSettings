@@ -60,7 +60,53 @@ namespace GwhrSettings.Core
             return (TSetting)objSetting.Value;
         }
 
+        protected TSetting GetValue<TSetting>(TSetting objDefaultValue, string strComment, [CallerMemberName] string strKey = "")
+        {
+            GwhrSetting objSetting = this._dicSettings.GetOrAdd(strKey, (key) =>
+            {
+                return new GwhrSetting()
+                {
+                    Key = strKey,
+                    Value = objDefaultValue,
+                    State = State.Added,
+                    Comment = strComment
+                };
+            });
+            return (TSetting)objSetting.Value;
+        }
+
         protected void SetValue<TSetting>(TSetting objNewValue, [CallerMemberName] string strKey = "")
+        {
+            GwhrSetting objSetting = this._dicSettings.AddOrUpdate(strKey, (key) =>
+            {
+                //This is the add value Factory
+                return new GwhrSetting()
+                {
+                    Key = strKey,
+                    Value = objNewValue,
+                    State = State.Added
+                };
+            }, (key, objCurrentSetting) =>
+            {
+                //This is the update value factory
+                if (objNewValue.Equals(objCurrentSetting.Value))
+                {
+                    //The value has not changed.  Return the current setting
+                    return objCurrentSetting;
+                }
+                //The value has changed.  Mark the setting as modified and assign the new value to it.
+                objCurrentSetting.State = State.Modified;
+                objCurrentSetting.Value = objNewValue;
+                return objCurrentSetting;
+            });
+
+            if (objSetting.State == State.Added || objSetting.State == State.Modified)
+            {
+                OnPropertyChanged(strKey);
+            }
+        }
+
+        protected void SetValue<TSetting>(TSetting objNewValue, string strComment, [CallerMemberName] string strKey = "")
         {
             GwhrSetting objSetting = this._dicSettings.AddOrUpdate(strKey, (key) =>
             {
